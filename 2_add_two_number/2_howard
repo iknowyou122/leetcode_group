@@ -1,0 +1,29 @@
+class Solution {
+    fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+        val result = (getNumber(l1) + getNumber(l2)).toString()
+        var head: ListNode? = null
+        var node: ListNode? = null
+        for (i in result.indices){
+            if (i == 0) {
+                head = ListNode(result[i].toString().toInt())
+                node = head
+            } else {
+                node?.next = ListNode(result[i].toString().toInt())
+                node = node?.next
+            }
+        }
+        return head
+    }
+
+    private fun getNumber(l1: ListNode?): Int {
+        var num1 = 0
+        var count1 = 0
+        var node1 = l1
+        while (node1?.next != null) {
+            num1 += (node1.`val` * Math.pow(10.0, count1.toDouble())).toInt()
+            count1++
+            node1 = node1.next
+        }
+        return num1
+    }
+}
